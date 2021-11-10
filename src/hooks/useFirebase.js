@@ -5,8 +5,6 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
   updateProfile,
 } from "firebase/auth";
 import initializeFirebase from "../Pages/Login/Firebase/firebase.init";
@@ -19,7 +17,6 @@ const useFirebase = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
-  const googleProvider = new GoogleAuthProvider();
 
   // Gmail Authentication
 
@@ -63,21 +60,6 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  // Google Sign-in
-  const handleGoogleSignIn = (location, history) => {
-    setIsLoading(true);
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        //  const destination = location?.state?.from || "/";
-        //  history.push(destination);
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(setIsLoading(false));
-  };
-
   // User Observation
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -108,7 +90,6 @@ const useFirebase = () => {
     logOut,
     userLogin,
     isLoading,
-    handleGoogleSignIn,
   };
 };
 

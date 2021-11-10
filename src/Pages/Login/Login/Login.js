@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const { userLogin, isLoading, user, error, handleGoogleSignIn } = useAuth();
+  const { userLogin, isLoading, user, error } = useAuth();
   
   const location = useLocation();
   const history = useHistory();
@@ -24,9 +24,6 @@ const Login = () => {
      e.preventDefault();
   };
   
-  const googleSignIn = () => {
-    handleGoogleSignIn(history, location);
-   }
    return (
      <Container>
        <Grid container spacing={2}>
@@ -74,15 +71,6 @@ const Login = () => {
              <Alert severity="success">User Login successful!</Alert>
            )}
            {error && <Alert severity="error">{error}</Alert>}
-           <p>---------OR---------</p>
-           <Button
-             onClick={googleSignIn}
-             sx={{ width: "75%", m: 1 }}
-             type="submit"
-             variant="contained"
-           >
-             Google Sign-in
-           </Button>
          </Grid>
        </Grid>
      </Container>
