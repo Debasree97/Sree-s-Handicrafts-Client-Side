@@ -14,7 +14,7 @@ const ExploreProduct = () => {
   return (
     <Grid container spacing={2}>
       {products?.map((product) => (
-        <Grid item sm={12} md={6} lg={4}>
+        <Grid item sm={12} md={6} lg={4} key={product._id}>
           <SingleProduct key={product._id} product={product}></SingleProduct>
         </Grid>
       ))}

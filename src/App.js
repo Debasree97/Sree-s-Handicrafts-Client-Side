@@ -1,7 +1,7 @@
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
 import './App.css';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
-import About from './Pages/About/About';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import ExploreProduct from './Pages/ExploreProduct/ExploreProduct';
 import Home from './Pages/Homepage/Home/Home';
 import Review from './Pages/Homepage/Review/Review';
@@ -10,6 +10,7 @@ import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Register from './Pages/Login/Register/Register';
 import NotFound from './Pages/NotFound/NotFound';
 import ProductDetails from './Pages/OrderProduct/ProductDetails/ProductDetails';
+import Footer from './Pages/Shared/Footer/Footer';
 import Navigation from './Pages/Shared/Header/Navigation';
 
 function App() {
@@ -34,19 +35,20 @@ function App() {
             <Route path="/exploreproduct">
               <ExploreProduct></ExploreProduct>
             </Route>
-            <Route path="/orderproduct/:id">
+            <PrivateRoute path="/orderproduct/:id">
               <ProductDetails></ProductDetails>
+            </PrivateRoute>
+            <Route path="/dashboard">
+              <Dashboard></Dashboard>
             </Route>
             <Route path="/review">
               <Review></Review>
             </Route>
-            <PrivateRoute path="/about">
-              <About></About>
-            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>
           </Switch>
+          <Footer></Footer>
         </BrowserRouter>
       </AuthProvider>
     </div>

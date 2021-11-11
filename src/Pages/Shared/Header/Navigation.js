@@ -14,15 +14,15 @@ const Navigation = () => {
   const { user,logOut } = useAuth();
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="sticky" sx={{ backgroundColor: "#00000090" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#00000090" }}>
           <Toolbar>
             <img style={{width:"150px"}} src={logo} alt="" />
             <NavLink style={navStyle} to="/home">
               Home
             </NavLink>
-            <NavLink style={navStyle} to="/about">
-              About
-            </NavLink>
+            {user?.email && <NavLink style={navStyle} to="/Dashboard">
+              Dashboard
+            </NavLink>}
             {user?.email ? (
               <Button onClick={logOut} sx={{ color: "white" }}>
                 {user?.displayName} Log Out
