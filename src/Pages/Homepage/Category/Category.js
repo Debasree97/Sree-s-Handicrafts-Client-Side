@@ -3,7 +3,7 @@ import babyDress from "../../../images/category/babyDress.jpg";
 import curtain from "../../../images/category/curtain.jpg";
 import cushionCover from "../../../images/category/cushionCover.jpg";
 import mat from "../../../images/category/mat.jpg";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 
 const Category = () => {

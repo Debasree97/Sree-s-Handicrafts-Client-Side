@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login/Login';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Register from './Pages/Login/Register/Register';
 import NotFound from './Pages/NotFound/NotFound';
+import ProductDetails from './Pages/OrderProduct/ProductDetails/ProductDetails';
 import Navigation from './Pages/Shared/Header/Navigation';
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/exploreproduct">
               <ExploreProduct></ExploreProduct>
+            </Route>
+            <Route path="/orderproduct/:id">
+              <ProductDetails></ProductDetails>
             </Route>
             <Route path="/review">
               <Review></Review>
