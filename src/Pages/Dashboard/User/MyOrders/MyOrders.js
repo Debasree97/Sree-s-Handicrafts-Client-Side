@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Container, IconButton } from "@mui/material";
+import { Container, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import useAuth from "../../../../hooks/useAuth";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -28,7 +28,7 @@ export default function MyOrders() {
   const handleDeleteBtn = (id) => {
     const proceed = window.confirm("Do You Want to Remove This Item?");
     if (proceed) {
-      fetch(`http://localhost:5000/delete/${id}`, {
+      fetch(`https://whispering-bayou-91525.herokuapp.com/delete/${id}`, {
         method: "delete",
       })
         .then((res) => res.json())
@@ -46,7 +46,7 @@ export default function MyOrders() {
     <Container>
       <Box>
         {orders?.length === 0 ? (
-          <Box>No Order Yet</Box>
+          <Box></Box>
         ) : (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="spanning table">
@@ -55,14 +55,15 @@ export default function MyOrders() {
                   <TableCell align="left" colSpan={2}>
                     User Logged in :
                   </TableCell>
-                  <TableCell colSpan={2} align="right">
+                  <TableCell colSpan={3} align="right">
                     {user?.email}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell></TableCell>
+                  <TableCell align="left"> Item</TableCell>
                   <TableCell align="left">Product</TableCell>
                   <TableCell align="left">Unit Price</TableCell>
+                  <TableCell align="left">Status</TableCell>
                   <TableCell align="left">Action</TableCell>
                 </TableRow>
               </TableHead>
@@ -70,19 +71,23 @@ export default function MyOrders() {
                 {orders?.map((order) => (
                   <TableRow key={order._id}>
                     <TableCell>
-                      <Container>
+                      <Box>
                         <img
                           alt=""
                           src={order.img}
                           width="150rem"
                           style={{ borderRadius: "5px" }}
                         />
-                      </Container>
+                      </Box>
                     </TableCell>
                     <TableCell align="left">{order.proName}</TableCell>
                     <TableCell align="left">{order.price}</TableCell>
+                    <TableCell>
+                      <Typography variant="p">{order.status}</Typography>
+                    </TableCell>
                     <TableCell align="left">
                       <IconButton
+                        sx={{ color: "red" }}
                         onClick={() => {
                           handleDeleteBtn(order._id);
                         }}
@@ -94,15 +99,6 @@ export default function MyOrders() {
                     </TableCell>
                   </TableRow>
                 ))}
-                <TableRow>
-                  <TableCell />
-                  <TableCell colSpan={1}>Total</TableCell>
-                  <TableCell align="left">
-                    {orders
-                      ?.map(({ price }) => price)
-                      .reduce((sum, i) => sum + i, 0)}
-                  </TableCell>
-                </TableRow>
               </TableBody>
             </Table>
           </TableContainer>

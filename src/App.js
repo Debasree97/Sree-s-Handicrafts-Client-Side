@@ -18,37 +18,49 @@ function App() {
     <div>
       <AuthProvider>
         <BrowserRouter>
-          <Navigation></Navigation>
           <Switch>
             <Route path="/home">
+              <Navigation></Navigation>
               <Home></Home>
+              <Footer></Footer>
             </Route>
             <Route exact path="/">
+              <Navigation></Navigation>
               <Home></Home>
+              <Footer></Footer>
             </Route>
             <Route path="/register">
+              <Navigation></Navigation>
               <Register></Register>
+              <Footer></Footer>
             </Route>
             <Route path="/login">
+              <Navigation></Navigation>
               <Login></Login>
+              <Footer></Footer>
             </Route>
             <Route path="/exploreproduct">
+              <Navigation></Navigation>
               <ExploreProduct></ExploreProduct>
+              <Footer></Footer>
             </Route>
             <PrivateRoute path="/orderproduct/:id">
+              <Navigation></Navigation>
               <ProductDetails></ProductDetails>
+              <Footer></Footer>
             </PrivateRoute>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
             <Route path="/review">
               <Review></Review>
             </Route>
             <Route path="*">
+              <Navigation></Navigation>
               <NotFound></NotFound>
+              <Footer></Footer>
             </Route>
           </Switch>
-          <Footer></Footer>
         </BrowserRouter>
       </AuthProvider>
     </div>

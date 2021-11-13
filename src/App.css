@@ -37,25 +37,82 @@
   }
 } */
 
+/* logo light: #f0ea4c */
+/* logo middle: #dcb925 */
+/* logo dark: #b99c37 */
+
 .btn-style {
-  background: radial-gradient(
-      ellipse farthest-corner at right bottom,
-      #fedb37 0%,
-      #fdb931 8%,
-      #9f7928 30%,
-      #8a6e2f 40%,
-      transparent 80%
-    ),
-    radial-gradient(
-      ellipse farthest-corner at left top,
-      #e6e4d5 0%,
-      #ffffac 8%,
-      #d1b464 25%,
-      #886a23 62.5%,
-      #7e6222 100%
-    );
+  background-image: linear-gradient(to bottom right, #f0ea4c, #dcb925);
 }
 
-.font-color{
-  color:#efd773;
+.banner-title {
+  font-size: 370%;
+}
+
+.custom-font {
+  font-size: 55px;
+}
+
+.custom-width-1 {
+    width: 10%;
+  }
+.custom-width-2 {
+    width: 90%;
+  }
+
+/* Responsiveness(according to bootstrap breakpoints)*/
+
+/* Large Device */
+@media only screen and (max-width: 992px) {
+  /* Banner */
+  .banner-title {
+    font-size: 250%;
+    text-align: center;
+  }
+
+  .custom-font {
+    font-size: 45px;
+  }
+}
+
+/* Medium Device */
+
+/* Banner */
+@media only screen and (max-width: 768px) {
+  /* Services */
+
+  .card-title {
+    font-size: 30px;
+  }
+
+  .title-size {
+    font-size: 16px;
+  }
+
+  
+  .flex-direction {
+    flex-direction: column;
+  }
+
+  .custom-width-1,.custom-width-2 {
+    width: 100%;
+  }
+}
+
+/* Small Device */
+
+@media only screen and (max-width: 576px) {
+  /* Banner */
+  .banner-title {
+    font-size: 220%;
+  }
+
+  .title-size {
+    font-size: 12px;
+  }
+
+  .custom-font {
+    font-size: 30px;
+  }
+
 }

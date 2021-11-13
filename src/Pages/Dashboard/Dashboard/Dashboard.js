@@ -6,33 +6,40 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { ListItemButton } from "@mui/material";
-import {
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-} from "react-router-dom";
+import { Button, ListItemButton } from "@mui/material";
+import { Switch, useRouteMatch, NavLink } from "react-router-dom";
 import MyOrders from "../User/MyOrders/MyOrders";
 import Payment from "../User/Payment/Payment";
 import GiveReview from "../User/GiveReview/GiveReview";
+import AddProduct from "../Admin/AddProduct/AddProduct";
+import ManageProducts from "../Admin/ManageProducts/ManageProducts";
+import ManageAllOrders from "../Admin/ManageAllOrders/ManageAllOrders";
+import MakeAdmin from "../Admin/MakeAdmin/MakeAdmin";
+import useAuth from "../../../hooks/useAuth";
+import AdminRoute from "../../Login/AdminRoute/AdminRoute";
+import CustomerRoute from "../../Login/CustomerRoute/CustomerRoute";
+import review from "../../../images/review.jpg";
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { admin, logOut } = useAuth();
 
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  const bgImg = {
+    backgroundImage: `url(${review})`,
+    height: "168vh",
+  };
+
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
@@ -43,61 +50,135 @@ function Dashboard(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const navStyleDrawer = {
+    textDecoration: "none",
+    marginLeft: "20px",
+    fontWeight: "bold",
+    color: "black",
+  };
+
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
+        {!admin ? (
+          <List>
+            <ListItem disablePadding>
+              <NavLink to={`${url}/myorders`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 0}
+                  onClick={(event) => handleListItemClick(event, 0)}
+                >
+                  <ListItemText primary="My Orders" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <NavLink to={`${url}/payment`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 1}
+                  onClick={(event) => handleListItemClick(event, 1)}
+                >
+                  <ListItemText primary="Payment" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <NavLink to={`${url}/givereview`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 2}
+                  onClick={(event) => handleListItemClick(event, 2)}
+                >
+                  <ListItemText primary="Review" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+          </List>
+        ) : (
+          <List>
+            <ListItem disablePadding>
+              <NavLink to={`${url}/manageallorders`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 0}
+                  onClick={(event) => handleListItemClick(event, 0)}
+                >
+                  <ListItemText primary="Manage All Orders" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <NavLink to={`${url}/addproduct`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 1}
+                  onClick={(event) => handleListItemClick(event, 1)}
+                >
+                  <ListItemText primary="Add A Product" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <NavLink to={`${url}/manageproducts`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 2}
+                  onClick={(event) => handleListItemClick(event, 2)}
+                >
+                  <ListItemText primary="Manage Products" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <NavLink to={`${url}/makeadmin`} style={navStyleDrawer}>
+                <ListItemButton
+                  selected={selectedIndex === 3}
+                  onClick={(event) => handleListItemClick(event, 3)}
+                >
+                  <ListItemText primary="Make Admin" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+          </List>
+        )}
 
         <ListItem disablePadding>
-          <Link to={`${url}/myorders`}>
-          <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
-          >
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Orders" />
-          </ListItemButton>
-          </Link>
+          <NavLink to="/home" style={navStyleDrawer}>
+            <ListItemButton
+              selected={selectedIndex === 4}
+              onClick={(event) => handleListItemClick(event, 4)}
+            >
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </NavLink>
         </ListItem>
 
-        
         <ListItem disablePadding>
-          <Link to={`${url}/payment`}>
-          <ListItemButton
-            selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(event, 1)}
+          <NavLink
+            to={`${url}/logout`}
+            style={{
+              textDecoration: "none",
+              fontWeight: "bold",
+              color: "black",
+            }}
           >
-            <ListItemIcon>{/* <DraftsIcon /> */}</ListItemIcon>
-            <ListItemText primary="Payment" />
-          </ListItemButton>
-          </Link>
-        </ListItem>
-
-        <ListItem disablePadding>
-          <Link to={`${url}/givereview`}>
-          <ListItemButton
-            selected={selectedIndex === 2}
-            onClick={(event) => handleListItemClick(event, 2)}
-          >
-            <ListItemIcon>{/* <DraftsIcon /> */}</ListItemIcon>
-            <ListItemText primary="Review" />
-          </ListItemButton>
-          </Link>
-        </ListItem>
-
-        <ListItem disablePadding>
-          <Link to={`${url}/payment`}>
-          <ListItemButton
-            selected={selectedIndex === 3}
-            onClick={(event) => handleListItemClick(event, 3)}
-          >
-            <ListItemIcon>{/* <DraftsIcon /> */}</ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItemButton>
-          </Link>
+            <ListItemButton
+              selected={selectedIndex === 4}
+              onClick={(event) => handleListItemClick(event, 3)}
+            >
+              <Button
+                className="btn-style"
+                variant="contained"
+                onClick={logOut}
+                sx={{ color: "#191919", fontWeight: "bold", ml: 1 }}
+              >
+                Log Out
+              </Button>
+            </ListItemButton>
+          </NavLink>
         </ListItem>
       </List>
     </div>
@@ -107,13 +188,14 @@ function Dashboard(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} style={bgImg}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          backgroundColor: "#191919",
         }}
       >
         <Toolbar>
@@ -126,8 +208,14 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Typography
+            variant="p"
+            noWrap
+            component="div"
+            className="custom-font"
+            sx={{ color: "#f0ea4c" }}
+          >
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
@@ -179,18 +267,27 @@ function Dashboard(props) {
       >
         <Toolbar />
         <Switch>
-          <Route exact path={path}>
+          <CustomerRoute path={`${path}/myorders`}>
             <MyOrders></MyOrders>
-          </Route>
-          <Route path={`${path}/myorders`}>
-            <MyOrders></MyOrders>
-          </Route>
-          <Route path={`${path}/payment`}>
+          </CustomerRoute>
+          <CustomerRoute path={`${path}/payment`}>
             <Payment></Payment>
-          </Route>
-          <Route path={`${path}/givereview`}>
+          </CustomerRoute>
+          <CustomerRoute path={`${path}/givereview`}>
             <GiveReview></GiveReview>
-          </Route>
+          </CustomerRoute>
+          <AdminRoute path={`${path}/addproduct`}>
+            <AddProduct></AddProduct>
+          </AdminRoute>
+          <AdminRoute path={`${path}/makeadmin`}>
+            <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageallorders`}>
+            <ManageAllOrders></ManageAllOrders>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageproducts`}>
+            <ManageProducts></ManageProducts>
+          </AdminRoute>
         </Switch>
       </Box>
     </Box>

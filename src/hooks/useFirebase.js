@@ -15,6 +15,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [admin, setAdmin] = useState(false);
 
   const auth = getAuth();
 
@@ -73,6 +74,13 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, [auth]);
 
+  // Admin
+  useEffect(() => {
+    fetch(`https://whispering-bayou-91525.herokuapp.com/admin/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
+  }, [user?.email]);
+
   // Sign out
   const logOut = () => {
     setIsLoading(true);
@@ -87,6 +95,7 @@ const useFirebase = () => {
     user,
     registerUser,
     error,
+    admin,
     logOut,
     userLogin,
     isLoading,

@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
 import { Container } from "@mui/material";
 import useAuth from "../../../hooks/useAuth";
 
@@ -12,7 +11,6 @@ const OrderForm = (props) => {
     formState: { errors },
   } = useForm();
   const { user } = useAuth();
-  //   const history = useHistory();
     const { img, name, price } = props.orderProduct;
     const { displayName, email } = user;
 
@@ -21,6 +19,7 @@ const OrderForm = (props) => {
     data.price = price;
     data.email = user.email;
     data.img = img;
+    data.status = "Pending";
     fetch("https://whispering-bayou-91525.herokuapp.com/order", {
       method: "POST",
       headers: {
@@ -28,14 +27,13 @@ const OrderForm = (props) => {
       },
       body: JSON.stringify(data),
     }).then((res) => {
+      alert("Your Order Has been Placed")
       reset();
-      //   history.push("/myorders");
     });
   };
 
   return (
-    <Container>
-      <h1>Please Fill Up the Form below to Submit Your Booking Request</h1>
+    
       <Container
         fluid
         style={{
@@ -63,18 +61,21 @@ const OrderForm = (props) => {
               "Please enter your phone number"}
             <input type="hidden" defaultValue={img} />
             <input
+              className="btn-style"
               style={{
                 marginTop: "50px",
+                marginBottom: "20px",
                 padding: "5px 0",
                 backgroundColor: "#E75B00",
-                color: "#DFDFDF",
+                color: "#191919",
+                fontWeight: "bold",
               }}
               type="SUBMIT"
             />
           </div>
         </form>
       </Container>
-    </Container>
+    
   );
 };
 
