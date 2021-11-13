@@ -128,24 +128,24 @@ export default function ManageAllorders() {
 
                     <TableCell align="center">
                       <IconButton
-                        onClick={() => {
-                          handleDeleteBtn(order._id);
-                        }}
-                        color="danger"
-                        aria-label="delete"
-                        size="large"
-                      >
-                        <CancelIcon fontSize="inherit" />
-                      </IconButton>
-                      <IconButton
                         aria-label="Confirm"
-                        color="success"
+                        style={{ color: "green" }}
                         size="large"
                         onClick={() => {
                           handleUpdateBtn(order._id);
                         }}
                       >
                         <CheckCircleIcon fontSize="inherit" />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => {
+                          handleDeleteBtn(order._id);
+                        }}
+                        style={{ color: "red" }}
+                        aria-label="delete"
+                        size="large"
+                      >
+                        <CancelIcon fontSize="inherit" />
                       </IconButton>
                     </TableCell>
                   </TableRow>

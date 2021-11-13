@@ -200,11 +200,10 @@ function Dashboard(props) {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ color:"black",mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
