@@ -60,6 +60,10 @@
     width: 90%;
   }
 
+.custom-width{
+  width:"100%";
+}
+
 /* Responsiveness(according to bootstrap breakpoints)*/
 
 /* Large Device */
@@ -97,6 +101,10 @@
   .custom-width-1,.custom-width-2 {
     width: 100%;
   }
+
+  .custom-width{
+  width:"60%";
+}
 }
 
 /* Small Device */

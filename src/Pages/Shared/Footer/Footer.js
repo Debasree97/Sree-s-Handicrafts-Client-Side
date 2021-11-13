@@ -28,7 +28,7 @@ const Footer = () => {
         }}
       >
         <img
-          style={{ height: "80px", paddingRight: "5px" }}
+          style={{width:"20%", paddingRight: "5px" }}
           src={logo}
           alt=""
         />
