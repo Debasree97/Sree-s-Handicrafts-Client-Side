@@ -17,3 +17,5 @@ A responsive full stack niche website built with MERN technology that sells incl
 3. customer route and admin route on dashboard have been tailored to give user customized route based on role and purpose. 
 4. No actual payment gateway is included
 5. Any route except the valid ones will take you to a 404 page.
+** Admin email: admin@admin.com
+** Admin password: 123456
