@@ -6,7 +6,7 @@ import { Box } from "@mui/system";
 const HomeProduct = () => {
   const [homeProducts, setHomeProducts] = useState([]);
   useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/allproduct`)
+    fetch(`https://sreescraft.onrender.com/allproduct`)
       .then((res) => res.json())
       .then((data) => setHomeProducts(data.homeProducts));
   }, []);

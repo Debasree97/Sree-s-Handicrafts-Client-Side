@@ -14,7 +14,7 @@ const GiveReview = () => {
 
   const onSubmit = (data) => {
     data.custname = user.displayName;
-    fetch("https://whispering-bayou-91525.herokuapp.com/review", {
+    fetch("https://sreescraft.onrender.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -66,10 +66,8 @@ const GiveReview = () => {
               flexDirection: "column",
             }}
           >
-            <label style={{paddingTop:"20px"}}>Review Box</label>
-            <textarea
-              {...register("review")}
-            />
+            <label style={{ paddingTop: "20px" }}>Review Box</label>
+            <textarea {...register("review")} />
             <label>Rating</label>
             <input
               placeholder="Please Enter a number between 1-5"

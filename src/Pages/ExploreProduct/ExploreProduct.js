@@ -7,7 +7,7 @@ const ExploreProduct = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/allproduct`)
+    fetch(`https://sreescraft.onrender.com/allproduct`)
       .then((res) => res.json())
       .then((data) => setProducts(data.allProducts));
   }, []);
@@ -34,7 +34,8 @@ const ExploreProduct = () => {
           {products?.map((product) => (
             <Grid item sm={12} md={6} lg={4} key={product._id}>
               <SingleProduct
-               key={product._id} product={product}
+                key={product._id}
+                product={product}
               ></SingleProduct>
             </Grid>
           ))}

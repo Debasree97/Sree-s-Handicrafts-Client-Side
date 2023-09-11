@@ -17,7 +17,7 @@ export default function MyOrders() {
   const [orders, setOrders] = React.useState();
 
   React.useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/orders`)
+    fetch(`https://sreescraft.onrender.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         const myBooking = data.filter((order) => order.email === user.email);
@@ -28,7 +28,7 @@ export default function MyOrders() {
   const handleDeleteBtn = (id) => {
     const proceed = window.confirm("Do You Want to Remove This Item?");
     if (proceed) {
-      fetch(`https://whispering-bayou-91525.herokuapp.com/delete/${id}`, {
+      fetch(`https://sreescraft.onrender.com/delete/${id}`, {
         method: "delete",
       })
         .then((res) => res.json())

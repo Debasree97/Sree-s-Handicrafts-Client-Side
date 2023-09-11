@@ -14,7 +14,7 @@ export default function ManageProducts() {
   const [products, setProducts] = React.useState();
 
   React.useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/products`)
+    fetch(`https://sreescraft.onrender.com/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -22,12 +22,9 @@ export default function ManageProducts() {
   const handleDeleteBtn = (id) => {
     const proceed = window.confirm("Do You Want to Remove This Item?");
     if (proceed) {
-      fetch(
-        `https://whispering-bayou-91525.herokuapp.com/deleteproduct/${id}`,
-        {
-          method: "delete",
-        }
-      )
+      fetch(`https://sreescraft.onrender.com/deleteproduct/${id}`, {
+        method: "delete",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -41,9 +38,7 @@ export default function ManageProducts() {
 
   return (
     <Container sx={{ my: 5 }}>
-      <h1 style={{ textAlign: "center" }}>
-        All Products
-      </h1>
+      <h1 style={{ textAlign: "center" }}>All Products</h1>
       <Box>
         {products?.length === 0 ? (
           <Box>No product Yet</Box>
@@ -88,14 +83,13 @@ export default function ManageProducts() {
 
                     <TableCell align="center">
                       <IconButton
-                        
                         onClick={() => {
                           handleDeleteBtn(product._id);
                         }}
                         aria-label="delete"
                         size="large"
                       >
-                        <CancelIcon sx={{color:"red"}} fontSize="inherit" />
+                        <CancelIcon sx={{ color: "red" }} fontSize="inherit" />
                       </IconButton>
                     </TableCell>
                   </TableRow>

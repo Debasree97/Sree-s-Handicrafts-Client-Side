@@ -76,7 +76,7 @@ const useFirebase = () => {
 
   // Admin
   useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/admin/${user?.email}`)
+    fetch(`https://sreescraft.onrender.com/admin/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user?.email]);

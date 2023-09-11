@@ -11,7 +11,7 @@ const AddProduct = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    fetch("https://whispering-bayou-91525.herokuapp.com/addproduct", {
+    fetch("https://sreescraft.onrender.com/addproduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",

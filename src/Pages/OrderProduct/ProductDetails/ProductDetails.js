@@ -1,4 +1,11 @@
-import { Card, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -9,7 +16,7 @@ const ProductDetails = () => {
   const [orderProduct, setOrderProduct] = useState({});
 
   useEffect(() => {
-    const url = `https://whispering-bayou-91525.herokuapp.com/orderproduct/${id}`;
+    const url = `https://sreescraft.onrender.com/orderproduct/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -17,7 +24,7 @@ const ProductDetails = () => {
       });
   }, [id]);
 
-  const { name, price, img,description } = orderProduct;
+  const { name, price, img, description } = orderProduct;
   return (
     <Container>
       <h1
@@ -67,7 +74,7 @@ const ProductDetails = () => {
           </Grid>
         </Container>
 
-        <Box  className="custom-width-2">
+        <Box className="custom-width-2">
           <OrderForm orderProduct={orderProduct}></OrderForm>
         </Box>
       </Box>

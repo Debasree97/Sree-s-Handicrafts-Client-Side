@@ -15,7 +15,7 @@ export default function ManageAllorders() {
   const [orders, setOrders] = React.useState();
 
   React.useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/orders`)
+    fetch(`https://sreescraft.onrender.com/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [orders?.status]);
@@ -23,7 +23,7 @@ export default function ManageAllorders() {
   const handleDeleteBtn = (id) => {
     const proceed = window.confirm("Do You Want to Remove This Item?");
     if (proceed) {
-      fetch(`https://whispering-bayou-91525.herokuapp.com/delete/${id}`, {
+      fetch(`https://sreescraft.onrender.com/delete/${id}`, {
         method: "delete",
       })
         .then((res) => res.json())
@@ -39,7 +39,7 @@ export default function ManageAllorders() {
 
   const handleUpdateBtn = (id) => {
     const user = { id };
-    fetch("https://whispering-bayou-91525.herokuapp.com/status", {
+    fetch("https://sreescraft.onrender.com/status", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

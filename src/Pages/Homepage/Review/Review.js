@@ -12,16 +12,14 @@ import React, { useEffect, useState } from "react";
 const Review = () => {
   const [reviews, setReviews] = useState([]);
 
-  
-
   useEffect(() => {
-    fetch(`https://whispering-bayou-91525.herokuapp.com/homereview`)
+    fetch(`https://sreescraft.onrender.com/homereview`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: "#808080" ,pb:5,marginBottom:"100px"}}>
+    <Box sx={{ backgroundColor: "#808080", pb: 5, marginBottom: "100px" }}>
       <Box sx={{ textAlign: "center", marginTop: "80px", mb: 5 }}>
         <Typography
           className="custom-font"
@@ -30,7 +28,7 @@ const Review = () => {
             textAlign: "center",
             fontWeight: "bold",
             color: "#f0ea4c",
-            pt:5
+            pt: 5,
           }}
         >
           People Who Loves Us!
